@@ -21,10 +21,15 @@
             --text-muted: #64748B;
             --light-red-bg: #FFF1F2;
             
-            /* Apple Liquid Glass Variables - Hiệu ứng trong mờ nhẹ */
-            --glass-bg: rgba(255, 255, 255, 0.25);
+            /* Apple Liquid Glass Variables - Trong suốt hơn & Nổi khối 3D */
+            --glass-bg: rgba(255, 255, 255, 0.12); /* Giảm độ đục để trong suốt hơn */
             --glass-border: rgba(255, 255, 255, 0.4);
-            --glass-shadow: 0 8px 32px 0 rgba(255, 42, 84, 0.05), inset 0 1px 0 0 rgba(255, 255, 255, 0.6);
+            /* Bóng đổ ngoài đậm hơn + bóng đổ trong (inset) màu trắng để tạo viền khối */
+            --glass-shadow: 
+                0 25px 45px rgba(0, 0, 0, 0.1), 
+                0 10px 20px rgba(255, 42, 84, 0.08), 
+                inset 0 1.5px 2px rgba(255, 255, 255, 0.9), 
+                inset 0 -1px 2px rgba(255, 255, 255, 0.15);
         }
 
         * {
@@ -77,9 +82,9 @@
         #envelope-overlay {
             position: fixed;
             inset: 0;
-            background: rgba(255, 255, 255, 0.7); 
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.5); 
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -104,7 +109,7 @@
             height: 100%;
             background: var(--gradient-main);
             border-radius: 18px;
-            box-shadow: 0 25px 50px -12px rgba(255, 42, 84, 0.3), 0 0 25px rgba(255, 123, 41, 0.2);
+            box-shadow: 0 30px 60px -15px rgba(255, 42, 84, 0.4), 0 0 25px rgba(255, 123, 41, 0.2);
         }
 
         .envelope-flap {
@@ -143,14 +148,14 @@
             font-weight: 900;
             font-size: 24px;
             z-index: 4;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
             transition: transform 0.4s ease, opacity 0.4s ease;
             animation: pulse-border 2s infinite;
         }
 
         @keyframes pulse-border {
-            0%, 100% { box-shadow: 0 0 0 0 rgba(255, 123, 41, 0.5), 0 8px 20px rgba(0, 0, 0, 0.2); }
-            50% { box-shadow: 0 0 0 12px rgba(255, 123, 41, 0), 0 12px 25px rgba(0, 0, 0, 0.3); }
+            0%, 100% { box-shadow: 0 0 0 0 rgba(255, 123, 41, 0.5), 0 10px 25px rgba(0, 0, 0, 0.25); }
+            50% { box-shadow: 0 0 0 15px rgba(255, 123, 41, 0), 0 15px 30px rgba(0, 0, 0, 0.3); }
         }
 
         .click-hint {
@@ -179,16 +184,16 @@
             transition: opacity 0.8s ease, transform 0.8s ease;
         }
 
-        /* KHUNG TRONG MỜ NHẸ */
+        /* KHUNG TRONG MỜ NHẸ & NỔI KHỐI MẠNH */
         .glass-card {
             background: var(--glass-bg);
-            backdrop-filter: blur(10px) saturate(140%);
-            -webkit-backdrop-filter: blur(10px) saturate(140%);
+            backdrop-filter: blur(12px) saturate(160%);
+            -webkit-backdrop-filter: blur(12px) saturate(160%);
             border: 1px solid var(--glass-border);
             border-radius: 28px;
             box-shadow: var(--glass-shadow);
             padding: 45px 35px;
-            margin-bottom: 30px;
+            margin-bottom: 35px;
             position: relative;
             overflow: hidden;
         }
@@ -205,7 +210,7 @@
             align-items: center;
             gap: 8px;
             padding: 6px 18px;
-            background: rgba(255, 255, 255, 0.5);
+            background: rgba(255, 255, 255, 0.4);
             border: 1px solid rgba(255, 42, 84, 0.2);
             border-radius: 30px;
             color: var(--primary-red);
@@ -214,7 +219,7 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             margin-bottom: 20px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05), inset 0 1px 1px rgba(255,255,255,0.7);
             backdrop-filter: blur(5px);
         }
 
@@ -246,12 +251,13 @@
             font-style: italic;
             font-weight: 600;
             padding: 20px 25px;
-            background: rgba(255, 245, 246, 0.4);
-            backdrop-filter: blur(6px);
+            background: rgba(255, 245, 246, 0.35);
+            backdrop-filter: blur(8px);
             border-left: 4px solid var(--primary-red);
             border-radius: 0 16px 16px 0;
             margin-bottom: 30px;
             text-align: left;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.04);
         }
 
         .math-badges {
@@ -263,34 +269,35 @@
         }
 
         .math-tag {
-            background: rgba(255, 255, 255, 0.4);
-            border: 1px solid rgba(255, 42, 84, 0.2);
+            background: rgba(255, 255, 255, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.5);
             padding: 8px 18px;
             border-radius: 12px;
             font-size: 14px;
             font-weight: 700;
             color: var(--primary-red);
-            box-shadow: 0 2px 10px rgba(255, 42, 84, 0.05);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.06), inset 0 1px 2px rgba(255,255,255,0.7);
             backdrop-filter: blur(5px);
         }
 
         .info-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 16px;
+            gap: 20px;
             margin-bottom: 25px;
         }
 
+        /* Nổi khối các Box thông tin */
         .info-box {
-            background: rgba(255, 255, 255, 0.35);
-            border: 1px solid rgba(255, 255, 255, 0.6);
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.5);
             border-radius: 20px;
             padding: 24px 20px;
             text-align: left;
             display: flex;
             flex-direction: column;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
-            backdrop-filter: blur(6px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.06), inset 0 1.5px 2px rgba(255,255,255,0.8);
+            backdrop-filter: blur(8px);
         }
 
         .info-label {
@@ -325,29 +332,32 @@
             text-decoration: none;
             transition: all 0.2s ease;
             width: fit-content;
+            box-shadow: 0 4px 10px rgba(255,42,84,0.1);
         }
 
         .btn-map-inline:hover {
             background: var(--primary-red);
             color: white;
+            box-shadow: 0 6px 15px rgba(255,42,84,0.3);
+            transform: translateY(-1px);
         }
 
         /* Countdown Timer Styles */
         .countdown-container {
             display: flex;
-            gap: 6px;
+            gap: 8px;
             margin-top: auto; 
             padding-top: 15px;
         }
         
         .cd-item {
-            background: rgba(255, 255, 255, 0.5);
-            border: 1px solid rgba(255, 42, 84, 0.15);
-            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            border-radius: 12px;
             padding: 10px 4px;
             text-align: center;
             flex: 1;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.06), inset 0 1px 2px rgba(255,255,255,0.8);
         }
 
         .cd-item span {
@@ -382,14 +392,14 @@
             border-radius: 16px;
             cursor: pointer;
             text-decoration: none;
-            box-shadow: 0 10px 25px -5px rgba(255, 42, 84, 0.4);
+            box-shadow: 0 15px 35px -5px rgba(255, 42, 84, 0.5), inset 0 1px 2px rgba(255,255,255,0.4);
             transition: all 0.25s ease;
         }
 
         .btn-primary:hover {
             background: var(--gradient-hover);
-            transform: translateY(-2px);
-            box-shadow: 0 14px 30px -5px rgba(255, 42, 84, 0.5);
+            transform: translateY(-3px);
+            box-shadow: 0 20px 40px -5px rgba(255, 42, 84, 0.6), inset 0 1px 2px rgba(255,255,255,0.4);
         }
 
         .btn-primary:disabled {
@@ -400,44 +410,46 @@
         }
 
         .btn-outline {
-            background: rgba(255, 255, 255, 0.4);
+            background: rgba(255, 255, 255, 0.3);
             border: 2px solid var(--primary-red);
             color: var(--primary-red);
-            box-shadow: none;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
         }
 
-        .btn-outline:hover { background: rgba(255, 42, 84, 0.1); box-shadow: none;}
+        .btn-outline:hover { background: rgba(255, 42, 84, 0.1); box-shadow: 0 10px 25px rgba(255,42,84,0.15);}
 
         /* ================= FORM RSVP ================= */
         .form-group { margin-bottom: 22px; text-align: left; }
-        .form-label { display: block; font-size: 14px; font-weight: 700; color: var(--text-dark); margin-bottom: 8px; }
+        .form-label { display: block; font-size: 14px; font-weight: 700; color: var(--text-dark); margin-bottom: 10px; }
 
         .form-input {
             width: 100%;
             padding: 14px 16px;
-            background: rgba(255, 255, 255, 0.4);
-            border: 1.5px solid rgba(255, 255, 255, 0.6);
+            background: rgba(255, 255, 255, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.6);
             border-radius: 14px;
             font-size: 15px;
             color: var(--text-dark);
             transition: all 0.2s;
             backdrop-filter: blur(5px);
+            /* Form input làm chìm xuống một chút để phân biệt với dạng thẻ nổi */
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.03), 0 4px 12px rgba(0,0,0,0.03);
         }
 
         .form-input:focus {
             outline: none;
-            background: rgba(255, 255, 255, 0.8);
+            background: rgba(255, 255, 255, 0.6);
             border-color: var(--primary-red);
-            box-shadow: 0 0 0 4px rgba(255, 42, 84, 0.1);
+            box-shadow: 0 0 0 4px rgba(255, 42, 84, 0.15), inset 0 1px 2px rgba(255,255,255,0.8);
         }
 
-        .radio-group { display: flex; gap: 12px; flex-wrap: wrap; }
+        .radio-group { display: flex; gap: 14px; flex-wrap: wrap; }
 
         .radio-card {
             flex: 1;
             min-width: 160px;
-            background: rgba(255, 255, 255, 0.4);
-            border: 1.5px solid rgba(255, 255, 255, 0.6);
+            background: rgba(255, 255, 255, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.6);
             padding: 14px;
             border-radius: 14px;
             cursor: pointer;
@@ -449,13 +461,15 @@
             font-size: 14px;
             transition: all 0.2s;
             backdrop-filter: blur(5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.06), inset 0 1px 2px rgba(255,255,255,0.8);
         }
 
         .radio-card:has(input:checked) {
             border-color: var(--primary-red);
-            background: rgba(255, 241, 242, 0.7);
+            background: rgba(255, 241, 242, 0.6);
             color: var(--primary-red);
-            box-shadow: inset 0 0 0 1px var(--primary-red);
+            box-shadow: inset 0 0 0 1px var(--primary-red), 0 12px 30px rgba(255,42,84,0.15);
+            transform: translateY(-2px);
         }
 
         /* Pháo hoa */
@@ -478,9 +492,9 @@
             display: none;
             position: fixed;
             inset: 0;
-            background: rgba(15, 23, 42, 0.5);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
+            background: rgba(15, 23, 42, 0.4);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             z-index: 10000;
             justify-content: center;
             align-items: center;
@@ -488,23 +502,23 @@
         }
 
         .admin-box {
-            background: rgba(255, 255, 255, 0.6);
-            backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.5);
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.6);
             border-radius: 24px;
             padding: 35px 30px;
             width: 100%;
             max-width: 400px;
             text-align: center;
-            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+            box-shadow: 0 30px 60px -10px rgba(0,0,0,0.3), inset 0 1px 2px rgba(255,255,255,0.9);
         }
 
         .admin-panel {
             display: none;
             position: fixed;
             inset: 0;
-            background: rgba(248, 250, 252, 0.85);
-            backdrop-filter: blur(12px);
+            background: rgba(248, 250, 252, 0.7);
+            backdrop-filter: blur(16px);
             z-index: 10001;
             overflow-y: auto;
             padding: 20px;
@@ -512,42 +526,43 @@
 
         .admin-header {
             max-width: 1000px;
-            margin: 0 auto 20px;
+            margin: 0 auto 25px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(255, 255, 255, 0.5);
-            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(15px);
             padding: 18px 24px;
             border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.6);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.06), inset 0 1px 2px rgba(255,255,255,0.8);
         }
 
         .admin-content {
             max-width: 1000px;
             margin: 0 auto;
-            background: rgba(255, 255, 255, 0.5);
-            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(15px);
             padding: 24px;
             border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.6);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.06), inset 0 1px 2px rgba(255,255,255,0.8);
         }
 
         .stats-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 16px;
+            gap: 20px;
             margin-bottom: 24px;
         }
 
         .stat-box {
-            background: rgba(255, 241, 242, 0.6);
-            border: 1px solid rgba(255, 42, 84, 0.1);
+            background: rgba(255, 241, 242, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.6);
             padding: 18px;
             border-radius: 16px;
             text-align: center;
+            box-shadow: 0 10px 25px rgba(255,42,84,0.06), inset 0 1px 2px rgba(255,255,255,0.8);
         }
 
         .stat-num { font-size: 34px; font-weight: 900; color: var(--primary-red); }
@@ -564,6 +579,7 @@
             font-size: 12px;
             white-space: nowrap; 
             line-height: 1.4;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
         }
 
         .btn-minimal {
@@ -571,21 +587,23 @@
             align-items: center;
             gap: 6px;
             padding: 10px 16px;
-            background: rgba(255, 255, 255, 0.6);
+            background: rgba(255, 255, 255, 0.5);
             color: var(--text-dark);
-            border: 1px solid rgba(0,0,0,0.1);
+            border: 1px solid rgba(255,255,255,0.7);
             border-radius: 12px;
             font-weight: 700;
             font-size: 14px;
             cursor: pointer;
             transition: 0.2s;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
         }
-        .btn-minimal:hover { background: rgba(226, 232, 240, 0.8); }
+        .btn-minimal:hover { background: rgba(255, 255, 255, 0.8); transform: translateY(-1px); box-shadow: 0 6px 15px rgba(0,0,0,0.08);}
 
         .btn-minimal.primary {
             background: var(--primary-red);
             color: white;
             border-color: var(--primary-red);
+            box-shadow: 0 8px 20px rgba(255,42,84,0.3);
         }
         .btn-minimal.primary:hover { background: #E61E45; }
 
@@ -600,7 +618,7 @@
             border-radius: 8px;
             transition: 0.2s;
         }
-        .btn-delete-minimal:hover { background: rgba(254, 226, 226, 0.5); border-color: #FECACA;}
+        .btn-delete-minimal:hover { background: rgba(254, 226, 226, 0.7); border-color: #FECACA;}
 
         /* Floating particles */
         .math-particle {
@@ -862,7 +880,7 @@
 
         const mathSymbols = ['π', '√x', '∫', 'Σ', '∞', 'lim', 'α', 'β', 'f(x)'];
         document.addEventListener('click', (e) => {
-            if (isOpened && !e.target.closest('.admin-panel') && !e.target.closest('.admin-modal') && !e.target.closest('.custom-confirm-modal') && e.target.tagName !== 'BUTTON' && e.target.tagName !== 'A') {
+            if (isOpened && !e.target.closest('.admin-panel') && !e.target.closest('.admin-modal') && !e.target.closest('.custom-confirm-modal') && e.target.tagName !== 'BUTTON' && e.target.tagName !== 'A' && e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA' && e.target.tagName !== 'LABEL') {
                 spawnParticle(e.clientX, e.clientY);
             }
         });
